@@ -29,6 +29,7 @@ A lightweight website auditing tool that analyzes any public webpage and returns
 - React
 - TypeScript
 - Tailwind CSS
+- Axios
 - Cheerio (HTML parsing)
 - Vercel
 
@@ -182,6 +183,29 @@ https://page-pulse-wheat.vercel.app
 
 ---
 
+
 ## Built for Digital Heroes Training Task
 
 This project was created as part of the **Digital Heroes Software Development Internship Qualification Task**.
+
+---
+
+## Testing
+
+This project uses **Vitest** for unit testing.
+
+Run the tests with:
+
+```bash
+npm test
+```
+
+Current test coverage includes:
+
+- ✅ Successful HTML page parsing
+- ✅ Invalid URL validation
+- ✅ Non-HTML response handling
+
+## AI Usage
+
+AI tools (primarily Claude) were used to brainstorm the project structure, improve the UI, review the code, and assist with writing documentation and unit tests. All generated suggestions were reviewed, modified, and integrated manually. The application logic, implementation decisions, debugging, testing, and final submission were personally verified and refined before deployment.
