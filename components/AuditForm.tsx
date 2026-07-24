@@ -43,24 +43,31 @@ export default function AuditForm({ onResult }: Props) {
 
   return (
     <form
-  onSubmit={handleSubmit}
-  className="
-    w-full
-    max-w-[700px]
-    rounded-[28px]
-    border
-    border-violet-500/20
-    bg-white/5
-    backdrop-blur-2xl
-    p-8
-    shadow-[0_0_60px_rgba(99,102,241,.08)]
-  "
->
-      <div className="relative">
-
-        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-2xl text-gray-400">
-          🔗
-        </span>
+      onSubmit={handleSubmit}
+      className="
+        w-full
+        max-w-full
+        rounded-[28px]
+        border
+        border-violet-500/20
+        bg-white/5
+        backdrop-blur-2xl
+        p-8
+        shadow-[0_0_60px_rgba(99,102,241,.08)]
+      "
+    >
+      <div
+        className="
+          flex items-center gap-3
+          rounded-2xl border border-gray-700 bg-[#111827]
+          px-5 py-1
+          transition
+          focus-within:border-violet-500
+          focus-within:ring-2
+          focus-within:ring-violet-500/20
+        "
+      >
+        <span className="shrink-0 text-2xl text-gray-400">🔗</span>
 
         <input
           type="url"
@@ -69,22 +76,13 @@ export default function AuditForm({ onResult }: Props) {
           onChange={(e) => setUrl(e.target.value)}
           placeholder="https://example.com"
           className="
-          w-full
-          rounded-2xl
-          border
-          border-gray-700
-          bg-[#111827]
-          py-5
-          pl-16
-          pr-5
-          text-lg
-          text-white
-          placeholder:text-gray-500
-          outline-none
-          transition
-          focus:border-violet-500
-          focus:ring-2
-          focus:ring-violet-500/20
+            w-full
+            bg-transparent
+            py-4
+            text-lg
+            text-white
+            placeholder:text-gray-500
+            outline-none
           "
         />
       </div>
