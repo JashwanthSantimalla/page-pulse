@@ -72,7 +72,7 @@ export default function AuditResult({ result }: AuditResultProps) {
       "
     >
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="flex items-center gap-2 text-xl font-bold text-white">
+        <h2 className="flex items-center gap-2 text-lg font-bold text-white">
           <span className="text-violet-400">📊</span>
           Audit Report
         </h2>
@@ -82,7 +82,7 @@ export default function AuditResult({ result }: AuditResultProps) {
         </span>
       </div>
 
-      <div className="grid auto-rows-min gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {CARD_CONFIG.map((card) => {
           const rawValue = result[card.key];
 
@@ -94,29 +94,28 @@ export default function AuditResult({ result }: AuditResultProps) {
               : `${rawValue}${card.suffix || ""}`;
 
           const isMeta = card.key === "metaDescription";
+          const isTitle = card.key === "title";
 
           return (
             <div
               key={card.key}
               className={`
+                flex flex-col
                 rounded-2xl
-                border
-                border-white/10
+                border border-white/10
                 bg-white/[0.03]
-                p-5
+                p-4
                 transition
                 hover:border-violet-500/30
-                flex
-                flex-col
                 ${isMeta ? "row-span-2" : ""}
               `}
             >
-              <div className="mb-4 flex items-center gap-3">
+              <div className="mb-3 flex items-center gap-2">
                 <span
                   className={`
                     flex
-                    h-9
-                    w-9
+                    h-8
+                    w-8
                     shrink-0
                     items-center
                     justify-center
@@ -136,27 +135,40 @@ export default function AuditResult({ result }: AuditResultProps) {
               {isMeta ? (
                 <p
                   className={`
+                    text-base
+                    leading-8
                     break-words
-                    text-lg
-                    font-semibold
-                    leading-relaxed
+                    ${card.color}
+                  `}
+                >
+                  {value}
+                </p>
+              ) : isTitle ? (
+                <p
+                  title={String(value)}
+                  className={`
+                    mt-auto
+                    truncate
+                    text-center
+                    text-xl
+                    font-bold
                     ${card.color}
                   `}
                 >
                   {value}
                 </p>
               ) : (
-                <div className="mt-auto flex flex-1 items-center justify-center">
-                  <p
-                    className={`
-                      text-3xl
-                      font-bold
-                      ${card.color}
-                    `}
-                  >
-                    {value}
-                  </p>
-                </div>
+                <p
+                  className={`
+                    mt-auto
+                    text-center
+                    text-2xl
+                    font-bold
+                    ${card.color}
+                  `}
+                >
+                  {value}
+                </p>
               )}
             </div>
           );
