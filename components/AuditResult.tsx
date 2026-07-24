@@ -144,31 +144,39 @@ export default function AuditResult({ result }: AuditResultProps) {
                   {value}
                 </p>
               ) : isTitle ? (
-                <p
-                  title={String(value)}
-                  className={`
-                    mt-auto
-                    truncate
-                    text-center
-                    text-xl
-                    font-bold
-                    ${card.color}
-                  `}
-                >
-                  {value}
-                </p>
+                <div className="mt-auto flex flex-1 items-center justify-center">
+                  <p
+                    title={String(value)}
+                    className={`
+                      w-full
+                      text-center
+                      text-lg
+                      font-bold
+                      leading-snug
+                      ${card.color}
+                    `}
+                    style={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {value}
+                  </p>
+                </div>
               ) : (
-                <p
-                  className={`
-                    mt-auto
-                    text-center
-                    text-2xl
-                    font-bold
-                    ${card.color}
-                  `}
-                >
-                  {value}
-                </p>
+                <div className="mt-auto flex flex-1 items-center justify-center">
+                  <p
+                    className={`
+                      text-2xl
+                      font-bold
+                      ${card.color}
+                    `}
+                  >
+                    {value}
+                  </p>
+                </div>
               )}
             </div>
           );
