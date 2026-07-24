@@ -1,36 +1,187 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Page Pulse
 
-## Getting Started
+A lightweight website auditing tool that analyzes any public webpage and returns essential SEO and technical information in seconds.
 
-First, run the development server:
+**🌐 Live Demo:** https://page-pulse-wheat.vercel.app
+
+**💻 GitHub Repository:** https://github.com/JashwanthSantimalla/page-pulse
+
+---
+
+## Features
+
+- Analyze any public website URL
+- Retrieve HTTP status code
+- Measure response time
+- Extract page title
+- Extract meta description
+- Count H1 headings
+- Count images missing alt attributes
+- Estimate total word count
+- Clean responsive UI
+- Graceful error handling for invalid URLs and failed requests
+
+---
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Cheerio (HTML parsing)
+- Vercel
+
+---
+
+## Quick Start
+
+### Clone the repository
+
+```bash
+git clone https://github.com/JashwanthSantimalla/page-pulse.git
+cd page-pulse
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+# API Contract
 
-To learn more about Next.js, take a look at the following resources:
+## POST `/api/audit`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Analyzes a webpage and returns audit information.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Request
 
-## Deploy on Vercel
+```json
+{
+  "url": "https://example.com"
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Success Response
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```json
+{
+  "status": 200,
+  "responseTime": 152,
+  "title": "Example Domain",
+  "metaDescription": "Example description...",
+  "h1Count": 1,
+  "imagesMissingAlt": 0,
+  "wordCount": 342
+}
+```
+
+### Error Response
+
+```json
+{
+  "error": "Invalid URL"
+}
+```
+
+Possible errors include:
+
+- Invalid URL
+- Request timeout
+- Non-success HTTP responses
+- Failed page fetch
+
+---
+
+# Design Decisions
+
+## 1. Server-side HTML Parsing
+
+All webpage analysis is performed on the server instead of the browser.
+
+**Reason**
+
+- Avoids browser CORS restrictions.
+- Keeps parsing logic centralized.
+- Provides consistent results for all users.
+
+---
+
+## 2. Single API Endpoint
+
+A single endpoint (`/api/audit`) returns the complete audit report.
+
+**Reason**
+
+- Reduces the number of client requests.
+- Simpler frontend implementation.
+- Easier to maintain and extend.
+
+---
+
+## 3. Minimal Dashboard UI
+
+The interface focuses on displaying the most important audit metrics in a clean card layout.
+
+**Reason**
+
+- Improves readability.
+- Keeps the user workflow simple.
+- Makes the application responsive across different screen sizes.
+
+---
+
+# Error Handling
+
+The application gracefully handles:
+
+- Invalid URLs
+- Failed network requests
+- Non-HTML responses
+- Unexpected server errors
+
+The user receives a readable error message instead of the application crashing.
+
+---
+
+# Future Improvements
+
+Given additional development time, the following improvements would be added:
+
+- Lighthouse integration
+- SEO scoring
+- Performance recommendations
+- Export reports as PDF
+- Historical audit tracking
+- Mobile optimization analysis
+
+---
+
+# Deployment
+
+Hosted on Vercel.
+
+Live URL:
+
+https://page-pulse-wheat.vercel.app
+
+---
+
+## Built for Digital Heroes Training Task
+
+This project was created as part of the **Digital Heroes Software Development Internship Qualification Task**.
